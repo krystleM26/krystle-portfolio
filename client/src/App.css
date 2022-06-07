@@ -10,6 +10,8 @@
   pointer-events: none;
 }
 
+/* Home */
+
 /* Page Layout and Contact Form */
 
 .container {
@@ -46,8 +48,8 @@ textarea {
 }
 
 button {
- display: block;
- width: 100%;
+ flex-direction: column;
+ justify-content: center;
  padding: 14px 28px;
  font-size: 16px;
  background-color: #FEC994;
@@ -75,4 +77,19 @@ img {
 
 h2 .card-title {
   text-align: center;
+}
+
+ footer {
+  display: flex;
+  flex-direction:  row;
+  border-top: 3px solid black;
+  width: 100%;
+ 
+ 
+  width: 100%;
+  align-items: center;
+ 
+  border: 2px solid red;
+  background-color: #609179;
+
 }
