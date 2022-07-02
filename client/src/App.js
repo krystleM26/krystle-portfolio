@@ -2,7 +2,7 @@ import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
-import Home from './components/projects/home/Home'
+import Home from './components/home/Home'
 import About from './components/About'
 import Projects from './components/projects/Projects'
 import Contact from './components/Contact'

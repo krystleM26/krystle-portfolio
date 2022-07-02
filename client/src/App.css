@@ -65,12 +65,8 @@ button {
   flex-direction:  row;
   border-top: 3px solid black;
   width: 100%;
- 
- 
-  width: 100%;
   align-items: center;
  
   border: 2px solid red;
   background-color: #609179;
-
 }

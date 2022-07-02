@@ -17,10 +17,18 @@
 
 
 .card {
-    display: flex-start;
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     justify-content: left;
     max-width: 100%;
-    padding-left: 15%;
+
  
+}
+.cards {
+   margin: auto; 
+}
+
+img {
+    max-width: 100%;
+    padding: 7%;
 }
