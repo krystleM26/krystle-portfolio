@@ -1,0 +1,16 @@
+
+
+  .container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  
+  img {
+    max-width: 100%;
+    padding:25%
+  }
+  
+
+  

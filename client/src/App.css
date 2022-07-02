@@ -59,25 +59,6 @@ button {
 }
 /* Project Card */
 
-.containerBody {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 5% 7% 7% 15%;
-  padding: 12%;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  
-}
-
-img {
-  object-fit: scale-down;
-}
-
-h2 .card-title {
-  text-align: center;
-}
 
  footer {
   display: flex;
