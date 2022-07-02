@@ -1,5 +1,26 @@
-.header{
+
+.content {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    /* margin: 15%; */
+    align-items: center;
+    justify-content: space-between;
+   
+ 
+}
+.header {
+    margin: 15%;
+    margin-bottom: 50%;
+}
+
+
+
+
+.card {
+    display: flex-start;
+    flex-direction: column;
+    justify-content: left;
+    max-width: 100%;
+    padding-left: 15%;
+ 
 }
