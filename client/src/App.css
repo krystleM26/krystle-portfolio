@@ -66,6 +66,10 @@ button {
   padding: 20px  5%;
   
 }
+
+.aboutMe {
+  boreder: 2px black solid
+}
 @media only screen and (max-width: 768){
   .card {
     flex-direction: row;
