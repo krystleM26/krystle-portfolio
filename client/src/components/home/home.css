@@ -40,6 +40,7 @@ text-align: center;
 .cards {
   padding: 5%;
   margin: auto;
+  border-bottom: 2px burlywood solid;
   
   
 }
@@ -60,5 +61,6 @@ img {
   .card {
     flex-direction: column;
     max-width: 100%;
+   
   }
 }
