@@ -1,25 +1,53 @@
-import React from 'react'
-// import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
+  const [show, setShow] = useState(false)
+
+  const showSwitch = () => {
+    setShow(!show)
+  }
+
   return (
     <div className="footer">
-      <div className="columns">
-        <div className="foot-col1">
-          <h3>Krystle Mitchell</h3>
-          <p> FullStack Web Developer</p>
-        </div>
-        <div className="foot-col2">
-          <h3> Nav links</h3>
-          <p>Home</p>
-          <p>Contact</p>
-          <p>Projects</p>
-        </div>
-        <div className="foot-col3">
-          <h3> Blog & Social</h3>
-          <p>Twitter</p>
-          <p>Blog</p>
-        </div>
+    <div className='logo'>Krystle Mitchell</div>
+       
+        
+      <div className={show ? 'links active ' : 'links'}>
+       
+
+        <Link onClick={showSwitch} to="/">
+          {''}
+          Home{''}
+        </Link>
+        <Link onClick={showSwitch} to="/about">
+          {''}
+          About{''}
+        </Link>
+
+        <Link onClick={showSwitch} to="/projects">
+          {''}
+          Projects{''}
+        </Link>
+
+        <Link onClick={showSwitch} to="/blog">
+          {''}
+          Blog{''}
+        </Link>
+
+        <Link onClick={showSwitch} to="/contact">
+          {''}
+          Contact{''}
+        </Link>
+      </div>
+
+      <div
+        onClick={showSwitch}
+        className={show ? 'bars-button active' : 'bars-button'}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   )
