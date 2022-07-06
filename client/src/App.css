@@ -68,11 +68,22 @@ button {
 }
 
 .aboutMe {
-  boreder: 2px black solid
+  border: 2px black solid;
+ 
+  max-width: 100%;
+  margin: 5%;
+  font-size: 2rem;
 }
 @media only screen and (max-width: 768){
   .card {
     flex-direction: row;
+  }
+  .aboutMe {
+    position: absolute;
+    border: 2px black solid;
+    max-width: 100%;
+    margin: 5%;
+
   }
 
   .footer {
