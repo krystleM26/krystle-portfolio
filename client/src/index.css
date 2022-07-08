@@ -51,6 +51,11 @@ table {
 	border-spacing: 0;
 }
 
+h3 {
+  margin: 1.5%;
+  padding:1%;
+}
+
 
 
 .navbar {
