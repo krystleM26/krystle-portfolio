@@ -3,15 +3,11 @@
   text-decoration: underline;
   background-color: #b3bf40;
   border: 2px solid grey;
+  text-color: navy
+  
 }
 
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
 
-
-/* Page Layout and Contact Form */
 
 
 h2{
@@ -36,6 +32,13 @@ h2{
   max-width: 100%;
   margin: 2%;
   font-size: 2rem;
+}
+
+p {
+  text-align: center;
+  font-size: 60%;
+  padding: 5%;
+  margin: 4%;
 }
 @media only screen and (max-width: 768){
   .card {

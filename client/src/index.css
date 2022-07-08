@@ -34,6 +34,7 @@ article, aside, details, figcaption, figure,
 }
 body {
 	line-height: 1;
+  color: navy;
 }
 ol, ul {
 	list-style: none;

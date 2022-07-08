@@ -1,11 +1,5 @@
 
 
- .container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
- }
 
   .containerProject {
     border: 2px solid burlywood;
