@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './contact.css'
 
 function Contact() {
   const [formInputs, setFormInputs] = useState({
@@ -7,12 +8,13 @@ function Contact() {
     message: '',
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault()
+   
     alert(`${formInputs.name}, your message has been sent, Cheers!.`)
   }
 
-  const handleChange = (e) => {
+  const handleChange =  (e) => {
     const { name, value } = e.target
     setFormInputs({ ...formInputs, [name]: value })
     e.preventDefault()
