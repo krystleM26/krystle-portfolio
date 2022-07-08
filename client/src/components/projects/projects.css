@@ -1,13 +1,14 @@
 
 
- .containers{
+ .container{
   display: flex;
   align-items: center;
   
  }
 
-  .containterProject{
-    border-bottom: 2px solid burlywood;
+  .containerProject {
+    border: 2px solid black;
+    padding: 5%;
   }
 
   
