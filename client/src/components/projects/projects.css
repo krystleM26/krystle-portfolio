@@ -7,8 +7,14 @@
  }
 
   .containerProject {
-    border: 2px solid black;
+    border: 2px solid burlywood;
     padding: 5%;
+  }
+
+  .img-card {
+    height: 200px;
+    width: 200px;
+    
   }
 
   
