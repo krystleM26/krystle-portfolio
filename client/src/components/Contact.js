@@ -1,4 +1,4 @@
-import axios  from  'axios';
+import axios from 'axios'
 import React, { useState } from 'react'
 import './contact.css'
 
@@ -10,32 +10,38 @@ function Contact() {
   })
   const [result, setResult] = useState(null)
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     // alert(`${formInputs.name}, thank you for your inquiry, I will get back to you shortly. Cheers!`)
     axios
-    .post('/send', formInputs)
-    .then(res => {
-      setResult(res.data);
-      formInputs({name: '',
-      email: '',
-      message: ''})
-    })
-    .catch(() => {
-      SpeechRecognitionResultList({success: false, message: 'ERROR!! Something is missing. Remember to fill out all the required fields'})
-    })
+      .post('/send', { ...formInputs })
+      .then((res) => {
+        setResult(res.data)
+        formInputs({
+          name: '',
+          email: '',
+          message: '',
+        })
+      })
+      .catch(() => {
+        setResult({
+          success: false,
+          message:
+            'ERROR!! Something is missing. Remember to fill out all the required fields',
+        })
+      })
   }
 
-  const handleChange =  (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target
-    setFormInputs({ ...formInputs})
+    setFormInputs({ ...formInputs, name:value });
     e.preventDefault()
   }
 
   return (
     <div className="container">
       <h2>Contact Me!</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="contactData">
           <div className="label">
             <label>Name:</label>
@@ -72,7 +78,7 @@ function Contact() {
             ></textarea>
           </div>
         </div>
-        <button type="submit" value="Submit">
+        <button onSubmit={handleSubmit} type="submit" value="Submit">
           Submit
         </button>
       </form>
