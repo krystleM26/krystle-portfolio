@@ -1,3 +1,4 @@
+import axios  from  'axios';
 import React, { useState } from 'react'
 import './contact.css'
 
@@ -7,16 +8,27 @@ function Contact() {
     email: '',
     message: '',
   })
+  const [result, setResult] = useState(null)
 
   const handleSubmit =  (e) => {
     e.preventDefault()
-   
-    alert(`${formInputs.name}, your message has been sent, Cheers!.`)
+    // alert(`${formInputs.name}, thank you for your inquiry, I will get back to you shortly. Cheers!`)
+    axios
+    .post('/send', formInputs)
+    .then(res => {
+      setResult(res.data);
+      formInputs({name: '',
+      email: '',
+      message: ''})
+    })
+    .catch(() => {
+      SpeechRecognitionResultList({success: false, message: 'ERROR!! Something is missing. Remember to fill out all the required fields'})
+    })
   }
 
   const handleChange =  (e) => {
     const { name, value } = e.target
-    setFormInputs({ ...formInputs, [name]: value })
+    setFormInputs({ ...formInputs})
     e.preventDefault()
   }
 

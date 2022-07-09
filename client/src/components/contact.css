@@ -18,11 +18,11 @@
   textarea {
     display: block;
     width: 100%;
-    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-    margin: 0.9vw 0;
+    padding: 14%;
+    margin: 3%;
     border: 2px solid #c1e1d2;
     border-radius: 5px;
-    font-size: 5px;
+    font-size: 61%;
   }
   
   .container textarea {

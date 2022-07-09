@@ -9,10 +9,10 @@ server.use(express.static(path.join(__dirname, 'client/build')))
 
 
 
-server.get('/api/users', ( req,res) => {
-    res.json([
-        {id: 1, username: 'krystle'}
-    ])
+
+server.post('/send', (req,res) => {
+    console.log((req.body))
+    res.send(req.body)
 })
 
 const PORT = process.env.PORT || 5000
