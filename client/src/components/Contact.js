@@ -14,7 +14,7 @@ function Contact() {
     }).then ((res) => {
       if(res.data.status === 'success') {
         alert(`Thank you, ${name}, your message has been sent `);
-        resetForm()
+       
       } else if( res.data.status === 'fail') {
         alert('Message failed to send')
       }
@@ -23,9 +23,7 @@ function Contact() {
 
   })
 
-  resetForm(){
-    setSFormInput({name: ‘’, email: ‘’, message: ‘’})
-  }
+ 
 
   return (
     <div className="container">
