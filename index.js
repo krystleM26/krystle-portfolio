@@ -33,8 +33,8 @@ server.listen(PORT, () => {
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'mitchell.krystle2@gmail.com',
-    pass: 'sjblcydybpwistvx',
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
   },
 })
 contactEmail.verify((error) => {
@@ -47,7 +47,7 @@ contactEmail.verify((error) => {
 
 router.post('/contact', (req, res) => {
   const { name, email, message } = req.body
-  
+
   const mail = {
     from: name,
     to: 'mitchell.krystle2@gmail.com',
