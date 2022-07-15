@@ -5,7 +5,7 @@ const express = require('express')
 const server = express()
 const router = express.Router()
 const cors = require('cors')
-const nodemailer = require('nodemailer')
+const mailer= require('nodemailer')
 
 //  Server Set-up
 
@@ -30,20 +30,8 @@ server.listen(PORT, () => {
 
 // Receive Emails Setup
 
-const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.PASSWORD
-  },
-})
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error)
-  } else {
-    console.log('Ready To Send')
-  }
-})
+
+
 
 router.post('/contact', (req, res) => {
   const { name, email, message } = req.body
@@ -54,6 +42,22 @@ router.post('/contact', (req, res) => {
     subject: 'Contact Form Submission',
     html: `<p> Name: ${name}</p><p> Email: ${email}</p><p>Message: ${message}</p>`,
   }
+
+  const contactEmail = mailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
+    },
+  })
+
+  contactEmail.verify((error) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Ready To Send')
+    }
+  })
 
   contactEmail.sendMail(mail, (error) => {
     if (error) {
