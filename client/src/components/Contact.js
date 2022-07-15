@@ -1,55 +1,43 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { json } from 'stream/consumers'
 import './contact.css'
 
+
 function Contact() {
-  const [formInputs, setFormInputs] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-  const [result, setResult] = useState(null)
-
-  const handleSubmit = (e) => {
+  const [formInputs, setFormInputs] = useState("Submit")
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // alert(`${formInputs.name}, thank you for your inquiry, I will get back to you shortly. Cheers!`)
-    axios
-      .post('/send', { ...formInputs })
-      .then((res) => {
-        setResult(res.data)
-        formInputs({
-          name: '',
-          email: '',
-          message: '',
-        })
-      })
-      .catch(() => {
-        setResult({
-          success: false,
-          message:
-            'ERROR!! Something is missing. Remember to fill out all the required fields',
-        })
-      })
-  }
+    setFormInputs("Sending...")
+    const { name, email, message} = e.target.elements;
+     let info = {
+      name: name.value,
+      email: email.vale,
+      message: message.value,
+    };
+      let response = await fetch("http://localhost:9000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(details),
+      });
+      setFormInputs("Submit");
+      let result = await response.json();
+      alert(result.status)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormInputs({ ...formInputs, name:value });
-    e.preventDefault()
-  }
+    };
 
   return (
     <div className="container">
       <h2>Contact Me!</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="contactData">
           <div className="label">
             <label>Name:</label>
             <input
               type="text"
               name="name"
-              value={formInputs.name}
-              onChange={handleChange}
               required
               placeholder="Name"
             />
@@ -59,8 +47,6 @@ function Contact() {
             <input
               type="text"
               name="email"
-              value={formInputs.email}
-              onChange={handleChange}
               required
               placeholder="Email Address"
             />
@@ -68,19 +54,14 @@ function Contact() {
           <div className="label">
             <label>Message:</label>
             <textarea
-              maxLength="250"
               type="text"
               name="message"
-              value={formInputs.message}
-              onChange={handleChange}
               required
-              placeholder="Note"
+              placeholder="Want to learn more? Leave a message."
             ></textarea>
           </div>
         </div>
-        <button onSubmit={handleSubmit} type="submit" value="Submit">
-          Submit
-        </button>
+        <button type="submit">{formInputs}</button>
       </form>
     </div>
   )

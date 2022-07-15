@@ -35,6 +35,7 @@ article, aside, details, figcaption, figure,
 body {
 	line-height: 1;
   color: navy;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 ol, ul {
 	list-style: none;
