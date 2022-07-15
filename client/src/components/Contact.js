@@ -5,7 +5,8 @@ import './contact.css'
 
 function Contact() {
   const [formInputs, setFormInputs] = useState("Submit")
-  handleSubmit((e) => {
+
+ const handleSubmit = ((e) => {
     e.preventDefault()
     axios({
       method: "POST",
@@ -13,7 +14,7 @@ function Contact() {
       data: formInputs
     }).then ((res) => {
       if(res.data.status === 'success') {
-        alert(`Thank you, ${name}, your message has been sent `);
+        alert(`Thank you, your message has been sent `);
        
       } else if( res.data.status === 'fail') {
         alert('Message failed to send')
