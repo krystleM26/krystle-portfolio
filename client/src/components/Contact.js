@@ -1,40 +1,72 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './contact.css'
 
-
-function Contact() {
-  const [formInputs, setFormInputs] = useState("Submit")
-
- const handleSubmit = ((e) => {
-    e.preventDefault()
-    axios({
-      method: "POST",
-      url: "http://localhost:9000/contact",
-      data: formInputs
-    }).then ((res) => {
-      if(res.data.status === 'success') {
-        alert(`Thank you, your message has been sent `);
-       
-      } else if( res.data.status === 'fail') {
-        alert('Message failed to send')
-      }
-
-    })
-
+const Contact = () => {
+  const [formInputs, setFormInputs] = useState({
+    name: '',
+    message: '',
+    email: '',
   })
+  const [sending, setSending] = useState({
+    loading: false,
+    success: false,
+    error: false,
+  })
+  const { error, success, loading } = sending;
 
- 
+
+  const handleSubmit = (e) => {
+    setSending({...sending, loading: true })
+    e.preventDefault()
+    axios
+      .post('http://localhost:9000/contact', formInputs)
+      .then((res) => {
+        if (res.status === 200) {
+          setSending({
+            ...sending,
+            loading: false,
+            success: true,
+          })
+        }
+      })
+      .catch((err) => {
+        setSending({
+          ...sending,
+          loading: false,
+          error: true,
+        })
+      })
+  }
+
+  const handleChange = (e) => {
+    setFormInputs({
+      ...formInputs,
+      [e.target.name]: e.target.value,
+    })
+    e.preventDefault()
+  }
+
+  if ( error ){
+    return <p>There is an error</p>
+  }
+
 
   return (
     <div className="container">
-      <h2>Contact Me!</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Contact Me</h2>
+      {success ? (
+        <p>Thank you for message. I will get back to you as soon as possible.</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
           <div className="form-area">
-            <label htmlFor='name'>Name:</label>
-            <input className='form-control'
+            <label htmlFor="name">Name:</label>
+            <input
+              className="formInputs"
               type="text"
               name="name"
+              value={formInputs.name}
+              onChange={handleChange}
               required
               placeholder="Name"
             />
@@ -42,8 +74,10 @@ function Contact() {
           <div className="form-area">
             <label>Email:</label>
             <input
-              type="text"
-              className='form-control'
+              type="email"
+              className="formInputs"
+              value={formInputs.email}
+              onChange={handleChange}
               name="email"
               required
               placeholder="Email Address"
@@ -52,15 +86,19 @@ function Contact() {
           <div className="form-area">
             <label>Message:</label>
             <textarea
+              className="formInputs"
               type="text"
               name="message"
+              value={formInputs.message}
+              onChange={handleChange}
               required
               placeholder="Want to learn more? Leave a message."
             ></textarea>
           </div>
-        
-        <button type="submit">{formInputs}</button>
-      </form>
+
+          <button type="submit">{loading ? 'Sending ' : 'submit'}</button>
+        </form>
+      )}
     </div>
   )
 }

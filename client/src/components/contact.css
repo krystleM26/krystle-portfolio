@@ -1,11 +1,12 @@
 .form-area{
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .container {
     min-width: 100%;
     margin: 0vw;
     position: relative;
+    min-height: 600px;
   }
   
   .container form {
