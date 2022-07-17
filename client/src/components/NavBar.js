@@ -28,6 +28,11 @@ const NavBar = () => {
           {' '}
           Contact{' '}
         </Link>
+        <Link onClick={showSwitch} to="/resume">
+          {' '}
+          Resume{' '}
+        </Link>
+
       </div>
 
       <div

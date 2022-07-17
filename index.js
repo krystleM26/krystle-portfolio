@@ -13,6 +13,7 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'client/build')))
 
 server.use('/', router)
+server.use(cors('*'))
 
 server.get('/', (req, res) => {
   res.send('Hello World')
@@ -30,10 +31,24 @@ server.listen(PORT, () => {
 
 // Receive Emails Setup
 
+const transporter = mailer.createTransport({
+    service: 'gmail',
+    port: 9000,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
+    },
+  })
+  transporter.verify((error) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Ready To Send')
+    }
+  })
 
 
-
-router.post('/contact', (req, res) => {
+server.post('/contact', (req, res) => {
   const { name, email, message } = req.body
 
   const mail = {
@@ -43,27 +58,15 @@ router.post('/contact', (req, res) => {
     html: `<p> Name: ${name}</p><p> Email: ${email}</p><p>Message: ${message}</p>`,
   }
 
-  const contactEmail = mailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
-    },
-  })
-
-  contactEmail.verify((error) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Ready To Send')
-    }
-  })
-
-  contactEmail.sendMail(mail, (error) => {
+  transporter.sendMail(mail, (error, data) => {
     if (error) {
       res.json({ status: 'ERROR' })
     } else {
       res.json({ status: 'Message Sent' })
     }
   })
+
+
 })
+
+

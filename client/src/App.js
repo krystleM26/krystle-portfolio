@@ -8,6 +8,7 @@ import Projects from './components/projects/Projects'
 import Contact from './components/Contact'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
+import Resume from './components/Resume'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route  path="/about" element={<About />}></Route>
         <Route  path="/contact" element={<Contact />}></Route>
         <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/resume" element = {<Resume />}></Route>
      </Routes>
 
 <Footer />

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './contact.css'
 
 const Contact = () => {
+  
   const [formInputs, setFormInputs] = useState({
     name: '',
     message: '',
