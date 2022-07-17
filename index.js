@@ -13,7 +13,12 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'client/build')))
 
 server.use('/', router)
-server.use(cors('*'))
+server.use(cors({
+  origin: 'http://www.krystlemitchell.com/'
+}));
+server.get('/', (req,res) => {
+  res.send('CORS solved')
+})
 
 server.get('/', (req, res) => {
   res.send('Hello World')
