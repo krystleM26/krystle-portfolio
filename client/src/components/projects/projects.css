@@ -15,6 +15,17 @@
     padding: 1.5%;
   }
 
+  .card_btn {
+    flex-direction: column;
+    justify-content: center;
+    margin: 3.5%;
+    padding: 14px 28px;
+    font-size: 16px;
+    background-color: #fec994;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 50%;
+  }
   
 
   
