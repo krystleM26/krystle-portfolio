@@ -23,6 +23,12 @@ const Home = () => {
         <div>
           <img className="headShot" src={headShot} alt="My Headshot" />
         </div>
+        <div>
+          
+          <Link to="/about"><button>
+          Learn More About Me
+            </button></Link>
+        </div>
       </div>
       <div className="card">
         <div className="cards">
