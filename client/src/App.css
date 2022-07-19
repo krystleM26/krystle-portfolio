@@ -2,10 +2,8 @@
   text-align: center;
   text-decoration: underline;
   background-color: #b3bf40;
-  border: 2px solid grey;
+ 
 }
-
-
 
 h2{
   padding: 2%;
@@ -15,7 +13,6 @@ h2{
 
 .footer {
   display: flex;
-  border-top: 3px solid burlywood;
   align-items: center;
   justify-content: space-between;
   background-color: #609179;
@@ -30,12 +27,12 @@ h2{
   font-size: 1rem;
 }
 
-p {
-  text-align: center;
-  font-size: 60%;
-  padding: 5%;
-  margin: 4%;
+.aboutMe p {
+  padding: 10px 20px;
+  text-align: left;
 }
+
+
 @media only screen and (max-width: 768){
   .card {
     flex-direction: row;
