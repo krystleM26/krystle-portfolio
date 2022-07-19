@@ -19,7 +19,7 @@ server.use(express.static(path.join(__dirname, 'client/build')))
 server.use('/', router)
 server.use(cors(corsOptions));
 
-server.get('/contact', cors(), (req,res) => {
+server.get('/contact', cors(corsOptions), (req,res) => {
   res,json({msg: 'cors enabled for contact'})
 })
 
