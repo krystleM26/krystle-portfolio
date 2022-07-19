@@ -8,12 +8,16 @@ const cors = require('cors')
 const mailer= require('nodemailer')
 
 //  Server Set-up
+var corsOptions = {
+  origin: ['http://localhost:3000', 'http://www.krystlemitchell.com/'],
+  credentials: true,
+};
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'client/build')))
 
 server.use('/', router)
-server.use(cors());
+server.use(cors(corsOptions));
 
 server.get('/contact', cors(), (req,res) => {
   res,json({msg: 'cors enabled for contact'})
