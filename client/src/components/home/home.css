@@ -20,9 +20,9 @@
 }
 
 .headShot {
-  width: 100px;
+  width: 500px;
   padding: 1%;
-  margin: 10px;
+  
  
 }
 
@@ -41,7 +41,7 @@ text-align: center;
 }
 
 img {
-  max-width: 100%;
+  max-width: 500px;
   height: 100%;
   border-radius: 15%;
   object-fit: contain;
