@@ -7,7 +7,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const Resume = () => {
     return (
-        <div>
+        <div className="resume">
             <Document file={KrystleResume}>
             <Page pageNumber={1} />
             </Document>

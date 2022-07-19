@@ -21,7 +21,7 @@ const Contact = () => {
     setSending({...sending, loading: true })
     e.preventDefault()
     axios
-      .post('http://localhost:9000/contact', formInputs)
+      .post('//localhost:9000/contact', formInputs)
       .then((res) => {
         if (res.status === 200) {
           setSending({
