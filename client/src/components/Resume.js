@@ -14,6 +14,8 @@ const Resume = () => {
             <Document file={KrystleResume}>
             <Page pageNumber={1} />
             </Document>
+
+          
         </div>
        
     )

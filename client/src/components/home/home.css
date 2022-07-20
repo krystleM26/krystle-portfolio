@@ -3,14 +3,22 @@
  align-items: center;
   justify-content: space-between;
 }
-.header {
- display:flex;
- flex-direction: row;
- justify-content: space-between;
- text-align: left;
- margin: 10px;
- border-bottom: 2px solid burlywood;
+.top-content{
+  display:flex;
+  flex-wrap: row;
+  justify-content: space-between;
+
 }
+.headShot {
+  flex-direction: row;
+  width: 250px;
+  padding: 1%;
+ 
+}
+.headShot img {
+  width: 100%;
+}
+
 
 
 .text-content {
@@ -19,12 +27,7 @@
   margin: 2%;
 }
 
-.headShot {
-  width: 250px;
-  padding: 1%;
-  
- 
-}
+
 
 .card {
 display: flex;
