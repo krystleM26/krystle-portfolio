@@ -10,12 +10,9 @@ const Footer = () => {
 
   return (
     <div className="footer">
-    <div className='logo'>Krystle Mitchell</div>
-       
-        
-      <div className={show ? 'links active ' : 'links'}>
-       
+      <div className="logo">Krystle Mitchell</div>
 
+      <div className={show ? 'links active ' : 'links'}>
         <Link onClick={showSwitch} to="/">
           {''}
           Home{''}
@@ -28,11 +25,6 @@ const Footer = () => {
         <Link onClick={showSwitch} to="/projects">
           {''}
           Projects{''}
-        </Link>
-
-        <Link onClick={showSwitch} to="/blog">
-          {''}
-          Blog{''}
         </Link>
 
         <Link onClick={showSwitch} to="/contact">
