@@ -31,7 +31,12 @@ h2{
   padding: 10px 20px;
   text-align: left;
 }
-
+.resume {
+  display:flex;
+  justify-content: center;
+  border: 2px solid burlywood;
+  margin: 5%;
+}
 button  {
   flex-direction: column;
   justify-content: center;
@@ -110,6 +115,7 @@ button  {
     position: absolute;
     transform: rotate(45deg);
   }
+
 
   
 

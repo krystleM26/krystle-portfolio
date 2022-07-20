@@ -165,6 +165,14 @@ h3 {
     align-items: center;
     justify-content: center;
   }
+  .headshot {
+    max-width:250px;
+    padding: 1%;
+  }
+  img {
+    max-width: 250px;
+    
+  }
 
 
   .bars-button {
