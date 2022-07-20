@@ -69,7 +69,8 @@ button span:after {
   transition: 0.5s;
 }
 button:hover {
-  background-color:  #f9e1c2;
+  background-color: #B5A642;
+  color: rgb(27, 53, 27)
 }
 button:hover span {
   padding-right: 25px;
@@ -82,7 +83,7 @@ button:hover span:after {
 
 
 
-@media only screen and (max-width: 768){
+@media only screen and (max-width: 800){
   .card {
     flex-direction: row;
   }

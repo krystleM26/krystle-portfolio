@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.header{
+
+  margin: 1%;
+  padding: 6%;
+}
 
 
 .text-content{
@@ -16,14 +21,13 @@
 
 
 .headShot {
-  flex-direction: row;
-  width: 250px;
-  padding: 1%;
+  max-width: 500px;
+  padding:4%
  
 }
 .headShot img {
   width: 100%;
-  margin: 21px auto;
+ 
 }
 
 
@@ -33,6 +37,10 @@
   margin: 0 32%;
   
  
+}
+
+.btn {
+margin: 5%;
 }
 
 
@@ -59,6 +67,13 @@ img {
 
 
 @media only screen and (max-width: 880px) {
+
+  .top-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
   .header {
     flex-direction: column;
     max-width: 100%;

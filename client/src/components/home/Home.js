@@ -20,7 +20,7 @@ const Home = () => {
           </div>
           <div className="btn">
         <Link to="/about">
-          <button>Learn More About Me</button>
+          <button>About</button>
         </Link>
       </div>
         </div>
