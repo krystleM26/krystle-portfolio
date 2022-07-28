@@ -6,6 +6,7 @@ const server = express()
 const router = express.Router()
 const cors = require('cors')
 const mailer= require('nodemailer')
+const transporter = require('./config')
 
 
 
