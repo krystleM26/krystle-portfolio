@@ -5,6 +5,7 @@ const contactEmail = nodemailer.createTransport({
 
     service: 'gmail',
     auth: {
+        type: 'OAuth2',
         user: 'mitchell.krystle2@gmail.com',
         pass: 'xapyyulimeegmgwa'
     }
