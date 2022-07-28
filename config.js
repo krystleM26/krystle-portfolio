@@ -15,5 +15,4 @@ const contactEmail = nodemailer.createTransport({
 contactEmail.verify()
 
 
-
-    module.exports = transporter;
+module.exports = nodemailer;
