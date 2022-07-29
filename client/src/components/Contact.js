@@ -49,7 +49,7 @@ const Contact = () => {
   }
 
   if ( error ){
-    return <p>There is an error</p>
+    return <p>Sorry there is an error, please send your request directly to my email here: mitchell.krystle2@gmail.com</p>
   }
 
 
@@ -57,7 +57,7 @@ const Contact = () => {
     <div className="container">
       <h2>Contact Me</h2>
       {success ? (
-        <p>Thank you for message. I will get back to you as soon as possible.</p>
+        <p>Thank you for testing my website, your message was not sent.If you would like to get in contact with me, simply send me a message through my email here: mitchell.krystle2@gmail.com.</p>
       ) : (
         <form onSubmit={handleSubmit}>
           <div className="form-area">
