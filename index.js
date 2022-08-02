@@ -35,21 +35,19 @@ server.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
+
+
 const transporter = nodemailer.createTransport({
-  service: 'outlook',
-  auth: {
-    user: process.env.AUTH_EMAIL,
-    password: process.env.AUTH_PASS,
-  },
+    service: "hotmail",
+    auth:{
+      user: process.env.AUTH_EMAIL,
+      pass: process.env.AUTH_PASS
+      
+    } 
+   
 })
 
-transporter.verify((error) => {
-  if (error) {
-    console.log(error)
-  } else {
-    console.log('Ready To Send')
-  }
-})
+
 
 // Send Emails Setup
 server.post('/contact', (req, res) => {
