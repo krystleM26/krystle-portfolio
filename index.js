@@ -17,7 +17,7 @@ server.use('/', router)
 
 server.use(cors())
 
-server.get('/contact',  (req, res) => {
+server.get('/contact', cors(), (req, res) => {
   res, json({ msg: 'cors enabled for contact' })
 })
 
@@ -35,19 +35,13 @@ server.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
-
-
 const transporter = nodemailer.createTransport({
-    service: "hotmail",
-    auth:{
-      user: process.env.AUTH_EMAIL,
-      pass: process.env.AUTH_PASS
-      
-    } 
-   
+  service: 'hotmail',
+  auth: {
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  },
 })
-
-
 
 // Send Emails Setup
 server.post('/contact', (req, res) => {
