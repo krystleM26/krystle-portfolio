@@ -36,20 +36,7 @@ server.listen(PORT, () => {
 
 // Send Emails Setup
 
-const transporter = nodemailer.createTransport({
-  service: 'outlook',
-  auth: {
-    user: process.env.AUTH_EMAIL,
-    password: process.env.AUTH_PASS,
-  },
-})
-transporter.verify((error) => {
-  if (error) {
-    console.log(error)
-  } else {
-    console.log('Ready To Send')
-  }
-})
+
 
 server.post('/contact', (req, res) => {
   const { name, email, message } = req.body
@@ -62,6 +49,21 @@ server.post('/contact', (req, res) => {
            <p> Email: ${email}</p>
            <p>Message: ${message}</p>`,
   };
+
+  const transporter = nodemailer.createTransport({
+    service: 'outlook',
+    auth: {
+      user: process.env.AUTH_EMAIL,
+      password: process.env.AUTH_PASS,
+    },
+  })
+  transporter.verify((error) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Ready To Send')
+    }
+  })
 
   transporter.sendMail(mail, (error, data) => {
     if (error) {
