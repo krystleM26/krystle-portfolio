@@ -52,6 +52,8 @@ server.post('/contact', (req, res) => {
 
   const transporter = nodemailer.createTransport({
     service: 'outlook',
+    port:465,
+    secure: true,
     auth: {
       user: process.env.AUTH_EMAIL,
       password: process.env.AUTH_PASS,
