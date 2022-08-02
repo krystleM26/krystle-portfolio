@@ -1,107 +1,44 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import './contact.css'
+import React, { useState } from "react";
 
-const Contact = () => {
-  
-  const [formInputs, setFormInputs] = useState({
-    name: '',
-    message: '',
-    email: '',
-  })
-  const [sending, setSending] = useState({
-    loading: false,
-    success: false,
-    error: false,
-  })
-  const { error, success, loading } = sending;
-
-
-  const handleSubmit = (e) => {
-    setSending({...sending, loading: true })
-    e.preventDefault()
-    axios
-      .post('/contact', formInputs)
-      .then((res) => {
-        if (res.status === 200) {
-          setSending({
-            ...sending,
-            loading: false,
-            success: true,
-          })
-        }
-      })
-      .catch((err) => {
-        setSending({
-          ...sending,
-          loading: false,
-          error: true,
-        })
-      })
-  }
-
-  const handleChange = (e) => {
-    setFormInputs({
-      ...formInputs,
-      [e.target.name]: e.target.value,
-    })
-    e.preventDefault()
-  }
-
-  if ( error ){
-    return <p>Sorry there is an error, please send your request directly to my email here: mitchell.krystle2@gmail.com</p>
-  }
-
-
+const ContactForm = () => {
+  const [status, setStatus] = useState("Submit");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    const { name, email, message } = e.target.elements;
+    let details = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    };
+    let response = await fetch("http://localhost:5000/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(details),
+    });
+    setStatus("Submit");
+    let result = await response.json();
+    alert(result.status);
+  };
   return (
-    <div className="container">
-      <h2>Contact Me</h2>
-      {success ? (
-        <p>Thank you for testing my website, your message was not sent.If you would like to get in contact with me, simply send me a message through my email here: mitchell.krystle2@gmail.com.</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className="form-area">
-            <label htmlFor="name">Name:</label>
-            <input
-              className="formInputs"
-              type="text"
-              name="name"
-              value={formInputs.name}
-              onChange={handleChange}
-              required
-              placeholder="Name"
-            />
-          </div>
-          <div className="form-area">
-            <label>Email:</label>
-            <input
-              type="email"
-              className="formInputs"
-              value={formInputs.email}
-              onChange={handleChange}
-              name="email"
-              required
-              placeholder="Email Address"
-            />
-          </div>
-          <div className="form-area">
-            <label>Message:</label>
-            <textarea
-              className="formInputs"
-              type="text"
-              name="message"
-              value={formInputs.message}
-              onChange={handleChange}
-              required
-              placeholder="Want to learn more? Leave a message."
-            ></textarea>
-          </div>
+    <form onSubmit={handleSubmit}>
+      <div className="container">
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" required />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" required />
+      </div>
+      <div>
+        <label htmlFor="message">Message:</label>
+        <textarea id="message" required />
+      </div>
+      <button type="submit">{status}</button>
+    </form>
+  );
+};
 
-          <button type="submit">{loading ? 'Sending ' : 'submit'}</button>
-        </form>
-      )}
-    </div>
-  )
-}
-
-export default Contact
+export default ContactForm;

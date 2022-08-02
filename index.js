@@ -5,7 +5,8 @@ const express = require('express')
 const server = express()
 const router = express.Router()
 const cors = require('cors')
-const mailer= require('nodemailer')
+const nodemailer = require('nodemailer')
+const xoauth2 = require('xoauth2')
 
 //  Server Set-up
 
@@ -13,12 +14,11 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'client/build')))
 
 server.use('/', router)
-server.use(cors());
+server.use(cors())
 
-// server.get('/contact', cors(), (req,res) => {
-//   res,json({msg: 'cors enabled for contact'})
-// })
-
+server.get('/contact', cors(), (req, res) => {
+  res, json({ msg: 'cors enabled for contact' })
+})
 
 server.get('/', (req, res) => {
   res.send('Hello World')
@@ -34,34 +34,34 @@ server.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
-// Receive Emails Setup
+// Send Emails Setup
 
-const transporter = mailer.createTransport({
-    service: 'gmail',
-    port: 9000,
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD
-    },
-  })
-  transporter.verify((error) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Ready To Send')
-    }
-  })
-
+const transporter = nodemailer.createTransport({
+  service: 'outlook',
+  auth: {
+    user: process.env.AUTH_EMAIL,
+    password: process.env.AUTH_PASS,
+  },
+})
+transporter.verify((error) => {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log('Ready To Send')
+  }
+})
 
 server.post('/contact', (req, res) => {
   const { name, email, message } = req.body
 
   const mail = {
     from: name,
-    to: 'mitchell.krystle2@gmail.com',
+    to: process.env.EMAIL,
     subject: 'Contact Form Submission',
-    html: `<p> Name: ${name}</p><p> Email: ${email}</p><p>Message: ${message}</p>`,
-  }
+    html: `<p> Name: ${name}</p>
+           <p> Email: ${email}</p>
+           <p>Message: ${message}</p>`,
+  };
 
   transporter.sendMail(mail, (error, data) => {
     if (error) {
@@ -70,6 +70,6 @@ server.post('/contact', (req, res) => {
       res.json({ status: 'Message Sent' })
     }
   })
-
-
 })
+
+
