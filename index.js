@@ -55,14 +55,14 @@ server.post('/contact', (req, res) => {
 
   const mail = {
     from: name,
-    to: process.env.EMAIL,
+    to: process.env.AUTH_EMAIL,
     subject: 'Contact Form Submission',
     html: `<p> Name: ${name}</p>
            <p> Email: ${email}</p>
            <p>Message: ${message}</p>`,
   }
 
-  transporter.sendMail(mail, (error, data) => {
+  transporter.sendMail(mail, (error) => {
     if (error) {
       res.json({ status: 'ERROR' })
     } else {
