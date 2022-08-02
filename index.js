@@ -6,7 +6,7 @@ const server = express()
 const router = express.Router()
 const cors = require('cors')
 const nodemailer = require('nodemailer')
-const xoauth2 = require('xoauth2')
+
 
 //  Server Set-up
 
