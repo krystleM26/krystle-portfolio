@@ -7,7 +7,6 @@ const router = express.Router()
 const cors = require('cors')
 const nodemailer = require('nodemailer')
 
-
 //  Server Set-up
 
 server.use(express.json())
@@ -34,10 +33,23 @@ server.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
+const transporter = nodemailer.createTransport({
+  service: 'outlook',
+  auth: {
+    user: process.env.AUTH_EMAIL,
+    password: process.env.AUTH_PASS,
+  },
+})
+
+transporter.verify((error) => {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log('Ready To Send')
+  }
+})
+
 // Send Emails Setup
-
-
-
 server.post('/contact', (req, res) => {
   const { name, email, message } = req.body
 
@@ -48,24 +60,7 @@ server.post('/contact', (req, res) => {
     html: `<p> Name: ${name}</p>
            <p> Email: ${email}</p>
            <p>Message: ${message}</p>`,
-  };
-
-  const transporter = nodemailer.createTransport({
-    service: 'outlook',
-    port:465,
-    secure: true,
-    auth: {
-      user: process.env.AUTH_EMAIL,
-      password: process.env.AUTH_PASS,
-    },
-  })
-  transporter.verify((error) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Ready To Send')
-    }
-  })
+  }
 
   transporter.sendMail(mail, (error, data) => {
     if (error) {
@@ -75,5 +70,3 @@ server.post('/contact', (req, res) => {
     }
   })
 })
-
-
