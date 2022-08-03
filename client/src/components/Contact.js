@@ -1,44 +1,51 @@
+import { Axios } from "axios";
 import React, { useState } from "react";
 
 const ContactForm = () => {
-  const [status, setStatus] = useState("Submit");
-  const handleSubmit =  async (e) => {
+  const [formData, setFormData] = useState("Submit");
+
+  const updateInput = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]:e.target.value,
+    })
+  }
+  const handleSubmit =  (e) => {
     e.preventDefault();
-    setStatus("Sending...");
-    const { name, email, message } = e.target.elements;
-    let details = {
-      name: name.value,
-      email: email.value,
-      message: message.value,
-    };
-    let response = fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(details),
-    });
-    setStatus("Submit");
-    let result = response.json()
-    alert(result.status);
-  };
+    sendEmail()
+    setFormData({
+      name: '',
+      email: '',
+      message:'',
+    })
+    
+    const sendEmail = () => {
+      Axios.post(
+       "localhost:9000/contact",
+       formData
+      )
+      
+    }
+    
+ 
   return (
-    <form onSubmit={handleSubmit} method= "POST" action="send" enctype = "multipart/form-data">
+    <form onSubmit={handleSubmit}>
       <div className="container">
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" required />
+        <input type="text" id="name" required  placeholder="Name" onChange={updateInput} value={formData.name || ""}/>
       </div>
       <div>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" required />
+        <input type="email" id="email" required  placeholder="Email" onChange={updateInput} value={formData.email || ""} />
       </div>
       <div>
         <label htmlFor="message">Message:</label>
-        <textarea id="message" required />
+        <textarea id="message" required  placeholder="Message" onChange={updateInput} value={formData.message || ""} />
       </div>
-      <button type="submit">{status}</button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
+}
 
-export default ContactForm;
+export default ContactForm
