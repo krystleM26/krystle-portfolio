@@ -10,6 +10,14 @@ const ContactForm = () => {
       [e.target.name]:e.target.value,
     })
   }
+
+  const sendEmail = () => {
+    Axios.post(
+     "localhost:9000/contact",
+     formData
+    )
+    
+  }
   const handleSubmit =  (e) => {
     e.preventDefault();
     sendEmail()
@@ -19,15 +27,8 @@ const ContactForm = () => {
       message:'',
     })
     
-    const sendEmail = () => {
-      Axios.post(
-       "localhost:9000/contact",
-       formData
-      )
-      
-    }
+  
     
- 
   return (
     <form onSubmit={handleSubmit}>
       <div className="container">
@@ -42,7 +43,7 @@ const ContactForm = () => {
         <label htmlFor="message">Message:</label>
         <textarea id="message" required  placeholder="Message" onChange={updateInput} value={formData.message || ""} />
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" onsubmit={handleSubmit}>Submit</button>
     </form>
   );
 };
