@@ -17,12 +17,13 @@
     "create-react-app": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "multiparty": "^4.2.3",
     "node": "^17.7.2",
+    "nodejs-nodemailer-outlook": "^1.2.4",
     "nodemailer": "^6.7.7",
     "nodemon": "^2.0.19"
   },
   "devDependencies": {
     "eslint": "^8.19.0"
   }
- 
 }

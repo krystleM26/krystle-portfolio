@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("Submit");
-  const handleSubmit = (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
     setStatus("Sending...");
     const { name, email, message } = e.target.elements;
@@ -11,7 +11,7 @@ const ContactForm = () => {
       email: email.value,
       message: message.value,
     };
-    let response =fetch("http://localhost:5000/contact", {
+    let response = fetch("http://localhost:5000/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -19,11 +19,11 @@ const ContactForm = () => {
       body: JSON.stringify(details),
     });
     setStatus("Submit");
-    let result = response.json();
+    let result = response.json()
     alert(result.status);
   };
   return (
-    <form onSubmit={handleSubmit} method= "POST">
+    <form onSubmit={handleSubmit} method= "POST" action="send" enctype = "multipart/form-data">
       <div className="container">
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" required />

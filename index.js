@@ -1,6 +1,6 @@
 require('dotenv').config()
 const path = require('path')
-
+const multiparty = require("multiparty");
 const express = require('express')
 const server = express()
 const router = express.Router()
@@ -13,12 +13,9 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'client/build')))
 
 server.use('/', router)
-// CORS Set-up
-
-server.use(cors())
 
 server.get('/contact', cors(), (req, res) => {
-  res, json({ msg: 'cors enabled for contact' })
+  res.json({ msg: 'cors enabled for contact' })
 })
 
 server.get('/', (req, res) => {
@@ -35,32 +32,47 @@ server.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
+
 const transporter = nodemailer.createTransport({
-  service: 'hotmail',
+  host: "smtp-mail.outlook.com",
+  port: 587,
   auth: {
     user: process.env.AUTH_EMAIL,
-    pass: process.env.AUTH_PASS,
+    pass: process.env.AUTH_PASSWORD,
   },
-})
+});
 
-// Send Emails Setup
-server.post('/contact', (req, res) => {
-  const { name, email, message } = req.body
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Server is ready to take our messages");
+  }
+});
+
+server.post('/contact', (req,res) => {
+  let form = new multiparty.Form();
+  let data = {}
 
   const mail = {
-    from: name,
+    from: data.name,
     to: process.env.AUTH_EMAIL,
-    subject: 'Contact Form Submission',
-    html: `<p> Name: ${name}</p>
-           <p> Email: ${email}</p>
-           <p>Message: ${message}</p>`,
+    message: `${data.name}, ${data.email}, ${data.message}`
   }
 
-  transporter.sendMail(mail, (error) => {
-    if (error) {
-      res.json({ status: 'ERROR' })
+  transporter.sendMail(mail, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong.");
     } else {
-      res.json({ status: 'Message Sent' })
+      res.status(200).send("Email successfully sent to recipient!");
     }
-  })
+  });
+
+
 })
+
+
+ 
+
+
