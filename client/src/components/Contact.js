@@ -39,7 +39,7 @@ const ContactForm = () => {
           required
           placeholder="Name"
           onChange={updateInput}
-          value={formData.name || ''}
+         
         />
 
         <div>
@@ -49,8 +49,7 @@ const ContactForm = () => {
             required
             placeholder="Email"
             onChange={updateInput}
-            value={formData.email || ''}
-          />
+          />  
         </div>
         <div>
           <input
@@ -58,7 +57,7 @@ const ContactForm = () => {
             required
             placeholder="Message"
             onChange={updateInput}
-            value={formData.message || ''}
+            
           />
         </div>
 
