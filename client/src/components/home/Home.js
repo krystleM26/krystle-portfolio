@@ -19,17 +19,18 @@ const Home = () => {
             </p>
           </div>
           <div className="btn">
-        <Link to="/about">
-          <button>About</button>
-        </Link>
-      </div>
+            <Link to="/about">
+              <button>About</button>
+            </Link>
+          </div>
         </div>
         <div className="headShot">
           <img src={headShot} alt="My Headshot" />
         </div>
-        
       </div>
-      
+
+      <h3>Explore More</h3>
+
       <div className="card">
         <div className="cards">
           <h2>Projects</h2>

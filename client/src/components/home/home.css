@@ -5,8 +5,40 @@
   align-items: center;
 }
 
-.header{
+h3{
+  font-size: 40px;
+  position: relative;
+  text-align: center;
+}
 
+
+h3:before{
+  content: "";
+  display:block;
+  width:200px;
+  height:2px;
+  background: #609179;
+  position: absolute;
+  left:0;
+  top:50%;
+  z-index: -2;
+}
+h3:after{
+  content: "";
+  display:block;
+  width:200px;
+  height:2px;
+  background: #609179;
+  position: absolute;
+  right:0;
+  top:50%;
+  z-index: -2;
+}
+span{
+  background: #fff;
+}
+
+.header{
   margin: 1%;
   padding: 6%;
 }
