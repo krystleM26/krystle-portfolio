@@ -22,7 +22,7 @@ const ContactForm = () => {
       console.log(res);
       console.log(res.data);
       window.location = "/retrieve" 
-  }
+  }}
   const handleSubmit = (e) => {
     e.preventDefault()
     sendEmail()
