@@ -17,7 +17,11 @@ const ContactForm = () => {
   }
 
   const sendEmail = () => {
-    Axios.post('localhost:9000/contact', formData)
+    axios.post('localhost:9000/contact', {formData})
+    .then(res=> {
+      console.log(res);
+      console.log(res.data);
+      window.location = "/retrieve" 
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,7 +65,7 @@ const ContactForm = () => {
           />
         </div>
 
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit">
           Submit
         </button>
       </form>
