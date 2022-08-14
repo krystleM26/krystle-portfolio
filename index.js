@@ -1,6 +1,5 @@
 require('dotenv').config()
 const path = require('path')
-const multiparty = require("multiparty");
 const express = require('express')
 const app= express()
 const router = express.Router()
@@ -9,6 +8,7 @@ const nodemailer = require('nodemailer')
 const http = require("http");
 const { response } = require('express');
 const server = http.Server(app)
+
 
 //  Server Set-up
 
@@ -24,7 +24,14 @@ app.get('/', (req, res) => {
 app.get('/contact', cors(), (req, res) => {
   res.json({ msg: 'cors enabled for contact' })
 })
-
+const sendEmail = () => {
+  axios.post('localhost:9000/contact', {formData})
+  .then(res=> {
+    console.log(res);
+    console.log(res.data);
+    window.location = "/retrieve" 
+})
+}
 app.get('/', (req, res) => {
   res.send('Hello World')
 })

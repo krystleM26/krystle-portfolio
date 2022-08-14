@@ -16,14 +16,7 @@ const ContactForm = () => {
     })
   }
 
-  const sendEmail = () => {
-    axios.get('localhost:9000/contact', {formData})
-    .then(res=> {
-      console.log(res);
-      console.log(res.data);
-      window.location = "/retrieve" 
-  })
-}
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
