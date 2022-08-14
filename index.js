@@ -2,72 +2,83 @@ require('dotenv').config()
 const path = require('path')
 const multiparty = require("multiparty");
 const express = require('express')
-const server = express()
+const app= express()
 const router = express.Router()
 const cors = require('cors')
 const nodemailer = require('nodemailer')
+const http = require("http");
+const { response } = require('express');
+const server = http.Server(app)
 
 //  Server Set-up
 
-server.use(express.json())
-server.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
-server.use('/', router)
+app.use('/', router)
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
 
-server.get('/contact', cors(), (req, res) => {
+app.get('/contact', cors(), (req, res) => {
   res.json({ msg: 'cors enabled for contact' })
 })
 
-server.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
 const PORT = process.env.PORT || 5000
 
-server.get('*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 })
 
 
-const transporter = nodemailer.createTransport({
-  host: "smtp-mail.outlook.com",
-  port: 587,
-  auth: {
-    user: process.env.AUTH_EMAIL,
-    pass: process.env.AUTH_PASSWORD,
-  },
-});
 
-transporter.verify(function (error, success) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Server is ready to take our messages");
-  }
-});
+app.post('/contact', (req,res) => {
+ 
 
-server.post('/contact', (req,res) => {
-  let form = new multiparty.Form();
-  let data = {}
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.AUTH_EMAIL,
+      pass: process.env.AUTH_PASSWORD,
+    },
+  });
 
   const mail = {
-    from: data.name,
+    from:req.body.email,
     to: process.env.AUTH_EMAIL,
-    message: `${data.name}, ${data.email}, ${data.message}`
+    message: `${req.body.name}, ${req.body.email}, ${req.body.message}`
   }
 
-  transporter.sendMail(mail, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Something went wrong.");
-    } else {
-      res.status(200).send("Email successfully sent to recipient!");
-    }
-  });
+    const mailOptions = {
+      from: req.body.email,
+      to: process.env.AUTH_EMAIL,
+      subject: "Contact Form Inquiry",
+      text: req.body.message
+    };
+
+    transporter.sendMail(mailOptions,function(error, info){
+      if(error){
+        console.log(err)
+        res.json({err: 'There is an error'})
+      } else{
+        console.log( "Email Sent:")
+        res.json({message: 'I have recieved your Email'})
+      }
+
+      response.redirect("/")
+    })
+
+
+
 
 
 })

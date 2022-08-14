@@ -17,7 +17,7 @@ const ContactForm = () => {
   }
 
   const sendEmail = () => {
-    axios.post('localhost:9000/contact', {formData})
+    axios.get('localhost:9000/contact', {formData})
     .then(res=> {
       console.log(res);
       console.log(res.data);
