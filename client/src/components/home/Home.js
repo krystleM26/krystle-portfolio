@@ -2,7 +2,7 @@ import React from 'react'
 import './home.css'
 import { Link } from 'react-router-dom'
 import headShot from '../../assets/HeadshotMe.png'
-import KrystleResume from '../../assets/KrystleMitchell-Resume.pdf'
+import krystleResume from '../../assets/KrystleMitchell-Resume.pdf'
 
 const Home = () => {
   return (
@@ -40,7 +40,7 @@ const Home = () => {
         </div>
         <div className="cards">
           <h2>Resume</h2>
-          <Link to={KrystleResume} target="_blank" download>
+          <Link to={krystleResume} target="_blank" download>
             <button>Download</button>
           </Link>
         </div>

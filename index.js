@@ -24,14 +24,7 @@ app.get('/', (req, res) => {
 app.get('/contact', cors(), (req, res) => {
   res.json({ msg: 'cors enabled for contact' })
 })
-const sendEmail = () => {
-  axios.post('localhost:9000/contact', {formData})
-  .then(res=> {
-    console.log(res);
-    console.log(res.data);
-    window.location = "/retrieve" 
-})
-}
+
 app.get('/', (req, res) => {
   res.send('Hello World')
 })
@@ -52,7 +45,7 @@ app.post('/contact', (req,res) => {
  
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "outlook",
     auth: {
       user: process.env.AUTH_EMAIL,
       pass: process.env.AUTH_PASSWORD,

@@ -1,68 +1,48 @@
-import { axios } from 'axios'
 import React, { useState } from 'react'
 import './contact.css'
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const [status, setStatus] = useState('Submit')
 
-  const updateInput = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    sendEmail()
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
+    setStatus('Sending..')
+    const { name, email, message } = e.target.elements
+    let details = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    }
+    let response = await fetch('http://localhost:5000/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset-utf-8',
+      },
+      body: JSON.stringify(details),
     })
+    setStatus('Submit')
+    let result = await response.json()
+    alert(result.status)
   }
 
   return (
     <div className="main">
       <h2>Get In Touch</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          id="name"
-          required
-          placeholder="Name"
-          onChange={updateInput}
-         
-        />
-
         <div>
-          <input
-            type="email"
-            id="email"
-            required
-            placeholder="Email"
-            onChange={updateInput}
-          />  
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" required placeholder="Name" />
         </div>
         <div>
-          <input
-            id="message"
-            required
-            placeholder="Message"
-            onChange={updateInput}
-            
-          />
+          <label htmlFor="name">Email:</label>
+          <input type="email" id="email" required placeholder="Email" />
+        </div>
+        <div>
+          <label htmlFor="message">Message:</label>
+          <input id="message" required placeholder="Message" />
         </div>
 
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit">{status}</button>
       </form>
     </div>
   )
