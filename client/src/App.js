@@ -1,5 +1,5 @@
 import './App.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Home from './components/home/Home'
@@ -11,6 +11,20 @@ import Footer from './components/Footer'
 import Resume from './components/Resume'
 
 function App() {
+  useEffect(() => {
+    const url = 'http://localhost:9000/testAPI'
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url)
+        const json = await response.json()
+        console.log(json)
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+
+    fetchData()
+  }, [])
   return (
     <Router>
       <NavBar />
