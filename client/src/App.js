@@ -1,5 +1,5 @@
 import './App.css'
-import Reactfrom 'react'
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Home from './components/home/Home'
@@ -11,8 +11,6 @@ import Footer from './components/Footer'
 import Resume from './components/Resume'
 
 function App() {
-  
-
   return (
     <Router>
       <NavBar />
