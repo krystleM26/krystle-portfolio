@@ -13,7 +13,7 @@ const ContactForm = () => {
     e.preventDefault()
     setStatus('Sending..')
 
-    let response = await fetch('http://localhost:9000/contact', {
+    let response = await fetch('/contact', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
