@@ -51,6 +51,7 @@ app.get('*', (req, res) => {
 })
 
 app.post('/contact', (req, res) => {
+  console.log(req.body)
   const { name, email, message } = req.body
   verifyUserEmail(name, email, message, res)
 })
