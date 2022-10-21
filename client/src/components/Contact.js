@@ -13,7 +13,7 @@ const ContactForm = () => {
     e.preventDefault()
     setStatus('Sending..')
 
-    fetch('http://localhost:9000/contact', {
+    fetch('/contact', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
