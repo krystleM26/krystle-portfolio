@@ -9,11 +9,11 @@ const ContactForm = () => {
     message: '',
   })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setStatus('Sending..')
 
-    let response = await fetch('/contact', {
+    fetch('http://localhost:9000/contact', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -21,8 +21,12 @@ const ContactForm = () => {
       },
       body: JSON.stringify(form),
     })
-    setStatus('Sent')
-    let result = await response.json()
+      .then((res) => {
+        setStatus('Sent')
+      })
+      .catch((err) => {
+        setStatus('Error')
+      })
   }
 
   const handleFormInputs = (e) => {
@@ -70,6 +74,7 @@ const ContactForm = () => {
           </div>
 
           <button type="submit">{status}</button>
+          {status === 'Error' ? '<span>There is an error</span>' : null}
         </form>
       )}
     </div>
