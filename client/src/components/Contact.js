@@ -3,27 +3,32 @@ import './contact.css'
 
 const ContactForm = () => {
   const [status, setStatus] = useState('Submit')
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('Sending..')
-    const { name, email, message } = e.target.elements
-    let details = {
-      name: name.value,
-      email: email.value,
-      message: message.value,
-    }
+
     let response = await fetch('http://localhost:9000/contact', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json;charset-utf-8',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(details),
+      body: JSON.stringify(form),
     })
     setStatus('Sent')
     let result = await response.json()
   }
 
+  const handleFormInputs = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+    e.preventDefault()
+  }
   return (
     <div className="main">
       <h2>Get In Touch</h2>
@@ -33,15 +38,35 @@ const ContactForm = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" required placeholder="Name" />
+            <input
+              name="name"
+              type="text"
+              id="name"
+              required
+              placeholder="Name"
+              onChange={handleFormInputs}
+            />
           </div>
           <div>
             <label htmlFor="name">Email:</label>
-            <input type="email" id="email" required placeholder="Email" />
+            <input
+              name="email"
+              type="email"
+              id="email"
+              required
+              placeholder="Email"
+              onChange={handleFormInputs}
+            />
           </div>
           <div>
             <label htmlFor="message">Message:</label>
-            <input id="message" required placeholder="Message" />
+            <input
+              name="message"
+              id="message"
+              required
+              placeholder="Message"
+              onChange={handleFormInputs}
+            />
           </div>
 
           <button type="submit">{status}</button>
