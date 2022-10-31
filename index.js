@@ -1,18 +1,18 @@
 require('dotenv').config()
-
 const dotenv = require('dotenv')
 dotenv.config()
 const path = require('path')
 const nodemailer = require('nodemailer')
 const PORT = process.env.PORT || 9000
 const bodyParser = require('body-parser')
-
 const cors = require('cors')
-const express = require('express')
 // Express
+const express = require('express')
 const app = express()
-
 const userController = express.Router()
+
+//Mongoose setup
+const mongoose = require('mongoose')
 
 //MiddleWare
 app.use(express.static(path.join(__dirname, 'client/build')))
@@ -20,7 +20,9 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
+app.use('/', userController)
 
+// Send email with nodemailer
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   host: 'smtp.gmail.com',
@@ -69,4 +71,7 @@ app.post('/contact', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`)
+  mongoose.connect('mongodb://localhost/test').then(() => {
+    console.log(`Connected to mongoDB at port 27017 `)
+  })
 })
