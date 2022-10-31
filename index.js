@@ -44,7 +44,9 @@ const verifyUserEmail = async (name, email, message, res) => {
 
 //Routing
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from server!' })
+  res.status(200).json({
+    status: `Server Run successfully`,
+  })
 })
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
