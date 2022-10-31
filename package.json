@@ -23,9 +23,11 @@
     "g": "^2.0.1",
     "node": "^17.7.2",
     "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "oauth2-server": "^3.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
     "eslint": "^8.19.0"
   }
 }
