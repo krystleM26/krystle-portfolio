@@ -1,17 +1,23 @@
 require('dotenv').config()
-const path = require('path')
+
 const dotenv = require('dotenv')
 dotenv.config()
+const path = require('path')
 const nodemailer = require('nodemailer')
 const PORT = process.env.PORT || 9000
 const bodyParser = require('body-parser')
-const express = require('express')
+
 const cors = require('cors')
+const express = require('express')
+// Express
 const app = express()
+
+const userController = express.Router()
 
 //MiddleWare
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
@@ -43,6 +49,7 @@ const verifyUserEmail = async (name, email, message, res) => {
 }
 
 //Routing
+
 app.get('/', (req, res) => {
   res.status(200).json({
     status: `Server Run successfully`,
@@ -57,6 +64,8 @@ app.post('/contact', (req, res) => {
   const { name, email, message } = req.body
   verifyUserEmail(name, email, message, res)
 })
+
+// Start server
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`)
