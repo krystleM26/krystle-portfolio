@@ -26,6 +26,12 @@ const oauth2Client = new OAuth2(
   MAILING_SERVICE_CLIENT_SECRET,
   OAUTH_PLAYGROUND,
 )
+const TEMPLATES = {
+  subscribe: {
+    fileName: 'subscribe.ejs',
+    subject: '[ABC Inc.] Welcome to ABC Inc.',
+  },
+}
 
 // OAUTH & NODEMAILER SEND EMAIL
 Mailing.sendEmail = (data) => {
@@ -35,7 +41,7 @@ Mailing.sendEmail = (data) => {
   const accessToken = oauth2Client.getAccessToken()
 
   const smtpTransport = nodemailer.createTransport({
-    services: 'gmail',
+    service: 'gmail',
     auth: {
       type: 'OAuth2',
       user: SENDER_EMAIL_ADDRESS,
@@ -44,6 +50,20 @@ Mailing.sendEmail = (data) => {
       refreshToken: MAILING_SERVICE_REFRESH_TOKEN,
       accessToken,
     },
+  })
+  const filePath = `${__dirname}/templates/${TEMPLATES[data.template].fileName}`
+  ejs.renderFile(filePath, data, {}, (e, content) => {
+    if (e) return e
+    const mailOptions = {
+      from: SENDER_EMAIL_ADDRESS,
+      to: data.email,
+      subject: TEMPLATES[data.template].subject,
+      html: content,
+    }
+    smtpTransport.sendMail(mailOptions, (err, info) => {
+      if (err) return err
+      return info
+    })
   })
 }
 

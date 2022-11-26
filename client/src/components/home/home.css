@@ -1,111 +1,69 @@
 .top-content {
-  display:flex;
+  display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
 }
 
-h3{
+h3 {
   font-size: 40px;
   position: relative;
   text-align: center;
 }
 
-
-h3:before{
-  content: "";
-  display:block;
-  width:200px;
-  height:2px;
-  background: #609179;
-  position: absolute;
-  left:0;
-  top:50%;
-  z-index: -2;
-}
-h3:after{
-  content: "";
-  display:block;
-  width:200px;
-  height:2px;
-  background: #609179;
-  position: absolute;
-  right:0;
-  top:50%;
-  z-index: -2;
-}
-span{
+span {
   background: #fff;
 }
 
-.header{
+.header {
   margin: 1%;
   padding: 6%;
 }
 
-
-.text-content{
-  display:flex;
+.text-content {
+  display: flex;
   justify-content: space-between;
-
 }
-
-
 
 .headShot {
   max-width: 350px;
-  padding:4%
- 
+  padding: 4%;
 }
 .headShot img {
   width: 100%;
- 
 }
-
-
 
 .text-content p {
   justify-content: center;
   margin: 0 32%;
-  
- 
 }
 
 .btn {
-margin: 5%;
+  margin: 5%;
 }
 
-
-
 .card {
-display: flex;
-text-align: center;
-
-
+  display: flex;
+  text-align: center;
 }
 .cards {
   padding: 5%;
   margin: auto;
   border-bottom: 2px burlywood solid;
-  
-  
 }
 
 img {
-
   border-radius: 15%;
   object-fit: cover;
 }
 
-
 @media only screen and (max-width: 880px) {
-
   .top-content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
+
   .header {
     flex-direction: column;
     max-width: 100%;
@@ -113,10 +71,5 @@ img {
   .card {
     flex-direction: column;
     max-width: 100%;
-   
   }
 }
-
-
-
-
