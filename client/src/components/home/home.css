@@ -11,9 +11,9 @@ h3 {
   text-align: center;
 }
 
-span {
+/* span {
   background: #fff;
-}
+} */
 
 .header {
   margin: 1%;
@@ -54,7 +54,7 @@ span {
 
 img {
   border-radius: 15%;
-  object-fit: cover;
+  width: 50%;
 }
 
 @media only screen and (max-width: 880px) {
