@@ -17,9 +17,7 @@ const Resume = () => {
 
   return (
     <div className=" resumeDoc">
-      <Document file={krystleResume}>
-        {/* options={{ workerSrc: '/pdf/worker.js' }} */}
-        loadSuccess = {loadDocSuccess}
+      <Document file={krystleResume} loadSuccess={loadDocSuccess}>
         <Page pageNumber={1} />
       </Document>
     </div>
