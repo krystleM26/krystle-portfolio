@@ -6,7 +6,7 @@ import Projects from './components/projects/Projects'
 import Contact from './components/Contact'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
-import Resume from './components/Resume'
+import Resume from './components/resume/Resume'
 
 function App() {
   return (

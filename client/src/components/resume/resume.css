@@ -1,0 +1,9 @@
+.resume-pdf_Document {
+  margin: 2%;
+}
+
+resumeDoc {
+  display: flex;
+  justify-content: center;
+  transform: scale(0.1);
+}
