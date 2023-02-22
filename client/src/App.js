@@ -7,6 +7,7 @@ import Contact from './components/Contact'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Resume from './components/resume/Resume'
+import Blog from './components/blog/Blog'
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/projects" element={<Projects />}></Route>
         <Route path="/resume" element={<Resume />}></Route>
+        <Route path="/blog" element={<Blog />}></Route>
       </Routes>
-
       {/* <Footer /> */}
     </Router>
   )

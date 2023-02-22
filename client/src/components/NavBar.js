@@ -5,7 +5,7 @@ const NavBar = () => {
   const [show, setShow] = useState(false)
 
   const showSwitch = () => {
-     setShow(!show)
+    setShow(!show)
   }
 
   return (
@@ -32,7 +32,10 @@ const NavBar = () => {
           {' '}
           Resume{' '}
         </Link>
-
+        <Link onClick={showSwitch} to="/blog">
+          {' '}
+          Blog{''}
+        </Link>
       </div>
 
       <div
