@@ -16,11 +16,12 @@ const Blog = () => {
   }) // stores Loading state
 
   useEffect((info) => {
+    setBlog({ ...blog, isLoading: true })
     fetch(
       `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@krystlemm`,
     )
       .then((res) => res.json())
-      .then((response) => {
+      .then((info) => {
         const image = info.feed.image
         const link = info.feed.link
         const blogs = info.items
@@ -45,9 +46,6 @@ const Blog = () => {
             style={{ backgroundImage: `url(${post.thumbnail})` }}
           >
             <div className="authorImg">
-              <button>
-                <i class="fa fa-phone" aria-hidden="true"></i>{' '}
-              </button>
               <a
                 href={profile.profileURL}
                 rel="noopener noreferrer"

@@ -39,11 +39,10 @@
 }
 
 .authorImg {
-  transform: translateY(50%);
-  margin-left: 1.5625rem;
+  transform: translateX(-50%);
   position: absolute;
-  bottom: 0;
-  display: flex !important;
+  left: 50%;
+  bottom: -25px;
 }
 
 .authorImg a {
