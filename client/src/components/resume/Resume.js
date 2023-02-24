@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './resume.css'
 
 import { Document, Page, pdfjs } from 'react-pdf'
