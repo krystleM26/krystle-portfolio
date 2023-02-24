@@ -17,7 +17,7 @@
   clear: both;
 }
 
-.card {
+.b-card {
   display: flex;
   flex-direction: column;
   position: center;
@@ -30,7 +30,7 @@
   border: none;
 }
 
-.card-image {
+.b-card-image {
   position: relative;
   min-height: 13.3125rem;
   background-size: cover;
@@ -62,15 +62,15 @@
   font-size: large;
 }
 
-.card-body {
+.b-card-body {
   padding: 8px;
 }
 
-.card-title {
+.b-card-title {
   margin: 1rem 0rem;
 }
 
-.cardText {
+.b-cardText {
   display: block;
   max-height: 8em;
   font-family: 'Josefin Slab', serif;

@@ -1,7 +1,7 @@
 import React from 'react'
 import './home.css'
 import { Link } from 'react-router-dom'
-
+import headShot from '../../assets/HeadShotMe.png'
 import krystleResume from '../../assets/krystleResume.pdf'
 
 const Home = () => {
@@ -13,19 +13,18 @@ const Home = () => {
           <div className="text-content">
             <p>
               {' '}
-              My name is Krystle and I am a software engineer. I enjoy creating
-              pathways across the web that helps make life easier for users
-              around the world.{' '}
+              My name is Krystle Mitchell and I am a writer turned a web
+              developer.{' '}
             </p>
           </div>
           <div className="btn">
             <Link to="/about">
-              <button>About</button>
+              <button>Learn</button>
             </Link>
           </div>
         </div>
         <div className="headShot">
-          {/* <img src={headShot} alt="My Headshot" /> */}
+          <img src={headShot} alt="My Headshot" />
         </div>
       </div>
 
@@ -46,9 +45,9 @@ const Home = () => {
         </div>
         <div className="cards">
           <h2>Blog</h2>
-          <a href="https://medium.com/green-code">
-            <button>View</button>
-          </a>
+          <Link to="/blog">
+            <button>Read</button>
+          </Link>
         </div>
       </div>
     </div>

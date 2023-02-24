@@ -18,7 +18,7 @@ const Blog = () => {
   useEffect((info) => {
     setBlog({ ...blog, isLoading: true })
     fetch(
-      `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@krystlemm`,
+      `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/green-code`,
     )
       .then((res) => res.json())
       .then((info) => {
@@ -40,9 +40,9 @@ const Blog = () => {
   const haveBlogs = () => {
     if (blog.item) {
       return blog.item.map((post, index) => (
-        <div className="grid card ab border shadow" key={index}>
+        <div className="grid b-card ab border shadow" key={index}>
           <div
-            className="card-image tb"
+            className="b-card-image tb"
             style={{ backgroundImage: `url(${post.thumbnail})` }}
           >
             <div className="authorImg">
@@ -56,8 +56,8 @@ const Blog = () => {
               </a>
             </div>
           </div>
-          <div className="card-body">
-            <h5 className="card-title">
+          <div className="b-card-body">
+            <h5 className="b-card-title">
               <a
                 href={post.link}
                 className="postTitle"
@@ -67,7 +67,7 @@ const Blog = () => {
                 {truncateText(post.title, 0, 80)}
               </a>
             </h5>
-            <p className="cardText">
+            <p className="b-cardText">
               {truncateText(ToText(post.description), 0, 265)}
             </p>
           </div>

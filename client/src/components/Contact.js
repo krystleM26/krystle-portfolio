@@ -2,41 +2,30 @@ import React, { useState } from 'react'
 import './contact.css'
 
 const ContactForm = () => {
-  const [status, setStatus] = useState('Submit')
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  // const [status, setStatus] = useState('Submit')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setStatus('Sending..')
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setStatus('Sending...')
+  //   const { name, email, message } = e.target.elements
+  //   let details = {
+  //     name: name.value,
+  //   }
+  // }
 
-    fetch('/contact', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form),
-    })
-      .then((res) => {
-        setStatus('Sent')
-      })
-      .catch((err) => {
-        setStatus('Error')
-      })
-  }
-
-  const handleFormInputs = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-    e.preventDefault()
-  }
+  // const handleFormInputs = (e) => {
+  //   setForm({ ...form, [e.target.name]: e.target.value })
+  //   e.preventDefault()
+  // }
   return (
     <div className="main">
       <h2>Get In Touch</h2>
-      {status === 'Sent' ? (
+      <p>
+        {' '}
+        Simply shoot me an email: krystlemm@gmail.com. I can't wait to hear from
+        you.{' '}
+      </p>
+      {/* {status === 'Sent' ? (
         <h3>Message has been sent</h3>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -76,7 +65,7 @@ const ContactForm = () => {
           <button type="submit">{status}</button>
           {status === 'Error' ? '<span>There is an error</span>' : null}
         </form>
-      )}
+      )} */}
     </div>
   )
 }
