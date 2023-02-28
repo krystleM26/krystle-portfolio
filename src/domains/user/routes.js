@@ -1,15 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const { createNewUser, authenticateUser } = require('./controller')
+const auth = require('./../../middleware/auth')
+
+//protected route
+router.get('/privateData', auth, (req, res) => {
+  console.log('world', res.body)
+  res
+    .status(200)
+    .send(`You're in the private territory of ${req.currentUser.email}`)
+})
 
 //signin
 
 router.post('/', async (req, res) => {
-  console.log('world')
   try {
     let { email, password } = req.body
     email = email.trim()
-    password: password.trim()
+    password = password.trim()
 
     if (!(email && password)) {
       throw Error('Empty credentials supplied')

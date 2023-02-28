@@ -29,6 +29,8 @@ const authenticateUser = async (data) => {
   }
 }
 
+//create new user
+
 const createNewUser = async (data) => {
   try {
     const { name, email, password } = data
@@ -39,7 +41,7 @@ const createNewUser = async (data) => {
       throw Error('User with the provided email already exists')
     }
 
-    //has password
+    //hash password
     const hashedPassword = await hashData(password)
     const newUser = new User({
       name,
