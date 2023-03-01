@@ -34,13 +34,15 @@ const verifyOTP = async ({ email, otp }) => {
   }
 }
 
+//Send otp
+
 const sendOTP = async ({ email, subject, message, duration = 1 }) => {
   try {
     if (!(email && subject && message)) {
       throw Error('Provide values for email, subject, message')
     }
 
-    //clear any old record
+    //clear any old record by importing OTP model
 
     await OTP.deleteOne({ email })
     //generate pin
