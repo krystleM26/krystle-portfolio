@@ -1,8 +1,38 @@
 const OTP = require('./model')
 const generateOTP = require('./../../utils/generateOTP')
 const sendEmail = require('./../../utils/sendEmail')
-const { hashData } = require('./../../utils/hashData')
+const { hashData, verifyHashedData } = require('./../../utils/hashData')
 const { AUTH_EMAIL } = process.env
+
+const verifyOTP = async ({ email, otp }) => {
+  try {
+    if (!(email && otp)) {
+      throw Error('Provide values for email, otp')
+    }
+    //ensure otp exists
+    const matchedOTPRecord = await OTP.findOne({
+      email,
+    })
+    if (!matchedOTPRecord) {
+      throw Error('No otp records found.')
+    }
+
+    //check otp expired
+    const { expiresAt } = matchedOTPRecord
+
+    if (expiresAt < Date.now()) {
+      await OTP.deleteOne({ email })
+      throw Error('Code has expired. Request for a new one')
+    }
+
+    //not expired yet, verify value
+    const hashedOTP = matchedOTPRecord.otp
+    const validOTP = await verifyHashedData(otp, hashedOTP)
+    return validOTP
+  } catch (error) {
+    throw error
+  }
+}
 
 const sendOTP = async ({ email, subject, message, duration = 1 }) => {
   try {
@@ -21,7 +51,7 @@ const sendOTP = async ({ email, subject, message, duration = 1 }) => {
       from: AUTH_EMAIL,
       to: email,
       subject,
-      html: `<p>${message}</p><p style="color:tomato; font-size:25px, letter-spacing:2px;"><b>${generateOTP}</b></p><p>This code <b>expires in ${duration} hour(s)</b>.</p> `,
+      html: `<p>${message}</p><p style="color:tomato; font-size:25px, letter-spacing:2px;"><b>${generatedOTP}</b></p><p>This code <b>expires in ${duration} hour(s)</b>.</p> `,
     }
     await sendEmail(mailOptions)
     //save otp record
@@ -38,4 +68,11 @@ const sendOTP = async ({ email, subject, message, duration = 1 }) => {
     throw error
   }
 }
-module.exports = { sendOTP }
+const deleteOTP = async (email) => {
+  try {
+    await OTP.deleteOne({ email })
+  } catch (error) {
+    throw error
+  }
+}
+module.exports = { sendOTP, verifyOTP, deleteOTP }
