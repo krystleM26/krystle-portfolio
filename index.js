@@ -1,6 +1,5 @@
-require('./backend/src/node_modules/dotenv/lib/main').config()
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 9000
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
@@ -17,8 +16,6 @@ server.use(bodyParser.json())
 server.use(cors())
 server.use('/', userController)
 
-
-
 // Get retrieve data
 userController.get('/', (req, res) => {
   User.find({}, (err, result) => {
@@ -28,9 +25,7 @@ userController.get('/', (req, res) => {
   })
 })
 
-server.get("/api", (req,res) => {
-  res.json({"Hello from server!"})
-})
+server.get('/api', (req, res) => {})
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
