@@ -20,11 +20,11 @@ const ContactForm = () => {
   return (
     <div className="main">
       <h2>Get In Touch</h2>
-      <p>
+      {/* <p>
         {' '}
-        Simply shoot me an email: krystlemm@gmail.com. I can't wait to hear from
+        {/* Simply shoot me an email: krystlemm@gmail.com. I can't wait to hear from */}
         you.{' '}
-      </p>
+      </p> */}
       {/* {status === 'Sent' ? (
         <h3>Message has been sent</h3>
       ) : (
@@ -65,7 +65,7 @@ const ContactForm = () => {
           <button type="submit">{status}</button>
           {status === 'Error' ? '<span>There is an error</span>' : null}
         </form>
-      )} */}
+      )} }
     </div>
   )
 }

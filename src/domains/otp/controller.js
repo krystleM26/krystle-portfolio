@@ -1,7 +1,7 @@
 const OTP = require('./model')
-const generateOTP = require('./../../utils/generateOTP')
-const sendEmail = require('./../../utils/sendEmail')
-const { hashData, verifyHashedData } = require('./../../utils/hashData')
+const generateOTP = require('../../utils/generateOTP')
+const sendEmail = require('../../utils/sendEmail')
+const { hashData, verifyHashedData } = require('../../utils/hashData')
 const { AUTH_EMAIL } = process.env
 
 const verifyOTP = async ({ email, otp }) => {

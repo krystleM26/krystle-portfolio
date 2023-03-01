@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const { createNewUser, authenticateUser } = require('./controller')
-const auth = require('./../../middleware/auth')
-const {
-  sendVerificationOTPEmail,
-} = require('./../email_verification/controller')
+const auth = require('../../middleware/auth')
+const { sendVerificationOTPEmail } = require('../email_verification/controller')
 
 //protected route
 router.get('/privateData', auth, (req, res) => {
