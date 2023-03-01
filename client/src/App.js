@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/home/Home'
 import About from './components/About'
@@ -10,8 +10,16 @@ import Blog from './components/blog/Blog'
 import Resume from './components/resume/Resume'
 
 function App() {
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    fetch('/api')
+      .then((res) => res.json())
+      .then((data) => setData(data.message))
+  })
+
   return (
     <Router>
+      <p>{!data ? 'Loading...' : data}</p>
       <NavBar />
 
       <Routes>

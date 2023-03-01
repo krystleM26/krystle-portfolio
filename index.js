@@ -17,6 +17,8 @@ server.use(bodyParser.json())
 server.use(cors())
 server.use('/', userController)
 
+
+
 // Get retrieve data
 userController.get('/', (req, res) => {
   User.find({}, (err, result) => {
@@ -24,6 +26,10 @@ userController.get('/', (req, res) => {
       data: result,
     })
   })
+})
+
+server.get("/api", (req,res) => {
+  res.json({"Hello from server!"})
 })
 
 server.get('*', (req, res) => {
